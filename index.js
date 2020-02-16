@@ -1,6 +1,9 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+require('./config'); // To load environment variables
+
+const PORT = process.env['PORT'];
+
 let user = require('./user');
 app.get('/', (req, res) => {
     user.getUsers().then((results,err)=>{
@@ -13,4 +16,5 @@ app.get('/', (req, res) => {
     });
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
